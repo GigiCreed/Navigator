@@ -15,5 +15,6 @@ public class App
     {
         LOGGER.info("hello");
         LOGGER.info("goodbye");
+        LOGGER.info("Gigi");
     }
 }
