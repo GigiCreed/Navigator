@@ -14,5 +14,6 @@ public class App
     public static void main( String[] args )
     {
         LOGGER.info("hello");
+        System.out.println("ASD");
     }
 }
