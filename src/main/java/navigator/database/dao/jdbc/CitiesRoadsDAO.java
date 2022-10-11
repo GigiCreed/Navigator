@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CitiesRoadsDAO implements ICitiesRoads {
@@ -40,6 +41,31 @@ public class CitiesRoadsDAO implements ICitiesRoads {
 
     @Override
     public List<CitiesRoads> getAll() {
+        Connection connection=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+
+        try{
+            connection = ConnectionPool.getInstance().retrieve();
+            ps=connection.prepareStatement("SELECT * FROM cities_has_roads");
+            rs=ps.executeQuery();
+            List<CitiesRoads> list= new ArrayList<>();
+            while (rs.next()){
+                list.add( new CitiesRoads(rs.getLong("id"),rs.getLong("road_id"),rs.getLong("cities_id")));
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(!connection.isClosed()) connection.close();
+                if(!ps.isClosed()) ps.close();
+                if(!rs.isClosed()) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         return null;
     }
 }
