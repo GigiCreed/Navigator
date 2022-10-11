@@ -29,4 +29,12 @@ public class Road {
   public void setDistance(double distance) {
     this.distance = distance;
   }
+
+  @Override
+  public String toString() {
+    return "Road{" +
+            "id=" + id +
+            ", distance=" + distance +
+            '}';
+  }
 }
