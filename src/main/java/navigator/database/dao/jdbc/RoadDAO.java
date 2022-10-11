@@ -56,7 +56,7 @@ public class RoadDAO implements IBaseDAO<Road> {
                 Road road = new Road();
 
                 road.setId(resultSet.getLong("id"));
-                road.setDistance(resultSet.getDouble("name"));
+                road.setDistance(resultSet.getDouble("distance"));
 
 
 

@@ -36,4 +36,13 @@ public class CitiesRoads {
     public void setCities_Id(Long cities_Id) {
         this.cities_Id = cities_Id;
     }
+
+    @Override
+    public String toString() {
+        return "CitiesRoads{" +
+                "id=" + id +
+                ", roads_Id=" + roads_Id +
+                ", cities_Id=" + cities_Id +
+                '}';
+    }
 }

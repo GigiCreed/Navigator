@@ -15,14 +15,14 @@ public class CitiesRoadsDAO implements ICitiesRoads {
 
     @Override
     public CitiesRoads getById(Long id) {
-        Connection connection=null;
+        Connection connection=ConnectionPool.getInstance().retrieve();
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-            connection = ConnectionPool.getInstance().retrieve();
-            ps=connection.prepareStatement("SELECT * FROM cities_has_roads WHERE id=?");
+            ps=connection.prepareStatement("SELECT * FROM cities_has_road WHERE id=?");
             ps.setLong(1,id);
             rs = ps.executeQuery();
+            rs.next();
             return new CitiesRoads(rs.getLong("id"),rs.getLong("road_id"),rs.getLong("cities_id"));
         }catch (SQLException e){
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class CitiesRoadsDAO implements ICitiesRoads {
 
         try{
             connection = ConnectionPool.getInstance().retrieve();
-            ps=connection.prepareStatement("SELECT * FROM cities_has_roads");
+            ps=connection.prepareStatement("SELECT * FROM cities_has_road");
             rs=ps.executeQuery();
             List<CitiesRoads> list= new ArrayList<>();
             while (rs.next()){

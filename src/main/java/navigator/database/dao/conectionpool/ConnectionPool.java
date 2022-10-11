@@ -42,7 +42,7 @@ public class ConnectionPool {
     }
 
     static {
-        try (FileInputStream f = new FileInputStream("D:\\Java Projects\\Solvd_Projects\\src\\main\\resources\\database.properties")) {
+        try (FileInputStream f = new FileInputStream(".//src//main//resources//database.properties")) {
             p.load(f);
         } catch (IOException e) {
             LOGGER.info(e);
