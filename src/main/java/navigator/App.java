@@ -1,5 +1,6 @@
 package navigator;
 
+import navigator.database.cityenums.City;
 import navigator.database.dao.jdbc.CitiesDAO;
 import navigator.database.dao.jdbc.CitiesRoadsDAO;
 import navigator.database.dao.jdbc.RoadDAO;
@@ -19,12 +20,12 @@ import java.util.List;
 
 public class App 
 {
-  static void distance(Long one,Long two){
+  static void distance(City one, City two){
         CitiesDAO citiesDAO = new CitiesDAO();
         CitiesDAO citiesDAO1 = new CitiesDAO();
 
-        Cities city1= citiesDAO.getByName(one);
-        Cities city2= citiesDAO1.getByName(two);
+        Cities city1= citiesDAO.getByName(one.toString());
+        Cities city2= citiesDAO1.getByName(two.toString());
         CitiesRoadsDAO citiesRoadsDAO = new CitiesRoadsDAO();
         CitiesRoadsDAO citiesRoadsDAO2 = new CitiesRoadsDAO();
 
@@ -58,7 +59,7 @@ public class App
 //            System.out.println(r);
 //        }
 
-        distance(2L,3L);
+        distance(City.Batumi,City.Tbilisi);
 
     }
 }
