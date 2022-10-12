@@ -68,4 +68,29 @@ public class CitiesRoadsDAO implements ICitiesRoads {
 
         return null;
     }
+
+    public CitiesRoads getByCityId(Long id) {
+        Connection connection = ConnectionPool.getInstance().retrieve();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement("SELECT * FROM cities_has_road WHERE cities_id=?");
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+            rs.next();
+            return new CitiesRoads(rs.getLong("id"), rs.getLong("road_id"), rs.getLong("cities_id"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (!connection.isClosed()) connection.close();
+                if (!ps.isClosed()) ps.close();
+                if (!rs.isClosed()) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
 }
