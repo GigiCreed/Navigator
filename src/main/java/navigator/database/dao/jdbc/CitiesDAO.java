@@ -80,4 +80,33 @@ public class CitiesDAO implements IBaseDAO<Cities> {
         }
         return citiesList;
     }
+
+    public Cities getByName(String name) {
+        Connection connection = ConnectionPool.getInstance().retrieve();
+        PreparedStatement preparedStatement =null;
+        ResultSet resultSet = null;
+        Cities cities = new Cities();
+        try {
+            preparedStatement = connection.prepareStatement("Select * from cities Where name = ?");
+            preparedStatement.setString(1,name);
+            resultSet =preparedStatement.executeQuery();
+            while (resultSet.next()){
+                cities.setId(resultSet.getLong("id"));
+                cities.setName(resultSet.getString("name"));
+                cities.setLatitudeX(resultSet.getDouble("latitude_x"));
+                cities.setLongitudeY(resultSet.getDouble("longitude_y"));
+            }
+        }catch (SQLException e){
+            LOGGER.error(e);
+        }finally {
+            try {
+                assert preparedStatement != null;
+                preparedStatement.close();
+                resultSet.close();
+            }catch (SQLException e) {
+                LOGGER.error(e);
+            }
+        }
+        return cities;
+    }
 }

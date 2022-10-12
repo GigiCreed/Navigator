@@ -29,11 +29,14 @@ public class App
         CitiesRoadsDAO citiesRoadsDAO = new CitiesRoadsDAO();
         CitiesRoadsDAO citiesRoadsDAO2 = new CitiesRoadsDAO();
 
-        CitiesRoads citiesRoads1 = citiesRoadsDAO.getByCityId(one);
-        CitiesRoads citiesRoads2 = citiesRoadsDAO2.getByCityId(two);
+        CitiesRoads citiesRoads1 = citiesRoadsDAO.getByCityId(city1.getId());
+        CitiesRoads citiesRoads2 = citiesRoadsDAO2.getByCityId(city2.getId());
+
 
         if(citiesRoads1.getRoads_Id()==citiesRoads2.getRoads_Id()){
-            System.out.println("Distance  sd");
+            RoadDAO roadDAO = new RoadDAO();
+            Road road = roadDAO.getById(citiesRoads2.getRoads_Id());
+            System.out.println("Distance "+road.getDistance());
         }
     }
 
@@ -41,25 +44,6 @@ public class App
    private static final Logger LOGGER = LogManager.getLogger(App.class);
     public static void main( String[] args )
     {
-//        CitiesDAO citiesDAO = new CitiesDAO();
-//
-//        for (Cities c : citiesDAO.getAll()) {
-//            System.out.println(c);
-//        }
-////
-//        CitiesRoadsDAO citiesRoadsDAO = new CitiesRoadsDAO();
-//
-//        for (CitiesRoads ci: citiesRoadsDAO.getAll()) {
-//            System.out.println(ci);
-//        }
-//
-//        RoadDAO roadDAO = new RoadDAO();
-//
-//        for (Road r:roadDAO.getAll()){
-//            System.out.println(r);
-//        }
-
         distance(City.Batumi,City.Tbilisi);
-
     }
 }
