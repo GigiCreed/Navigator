@@ -3,7 +3,7 @@ package navigator.database.dao.jdbc;
 import navigator.database.dao.conectionpool.ConnectionPool;
 import navigator.database.dao.interfaces.IBaseDAO;
 import navigator.database.models.Cities;
-import navigator.database.models.Road;
+import navigator.database.models.Roads;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,22 +11,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoadDAO implements IBaseDAO<Road> {
-    private static final Logger LOGGER = LogManager.getLogger(RoadDAO.class);
+public class RoadsDAO implements IBaseDAO<Roads> {
+    private static final Logger LOGGER = LogManager.getLogger(RoadsDAO.class);
 
     @Override
-    public Road getById(Long id) {
+    public Roads getById(Long id) {
         Connection connection = ConnectionPool.getInstance().retrieve();
         PreparedStatement preparedStatement =null;
         ResultSet resultSet = null;
-        Road road = new Road();
+        Roads roads = new Roads();
         try {
-            preparedStatement = connection.prepareStatement("Select * from road Where id = ?");
+            preparedStatement = connection.prepareStatement("Select * from Roads Where id = ?");
             preparedStatement.setLong(1,id);
             resultSet =preparedStatement.executeQuery();
             while (resultSet.next()){
-                road.setId(resultSet.getLong("id"));
-                road.setDistance(resultSet.getDouble("distance"));
+                roads.setId(resultSet.getLong("id"));
+                roads.setDistance(resultSet.getDouble("distance"));
             }
         }catch (SQLException e){
             LOGGER.error(e);
@@ -39,28 +39,27 @@ public class RoadDAO implements IBaseDAO<Road> {
             }catch (SQLException e) {
                 LOGGER.error(e);
             }
+            ConnectionPool.getInstance().putback(connection);
         }
-        return road;
+        return roads;
     }
 
     @Override
-    public List<Road> getAll() {
+    public List<Roads> getAll() {
         Connection connection = ConnectionPool.getInstance().retrieve();
-        List<Road> roadList = new ArrayList<>();
+        List<Roads> RoadsList = new ArrayList<>();
         Statement statement=null;
         ResultSet resultSet = null;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("Select * from road");
+            resultSet = statement.executeQuery("Select * from Roads");
             while (resultSet.next()){
-                Road road = new Road();
+                Roads Roads = new Roads();
 
-                road.setId(resultSet.getLong("id"));
-                road.setDistance(resultSet.getDouble("distance"));
+                Roads.setId(resultSet.getLong("id"));
+                Roads.setDistance(resultSet.getDouble("distance"));
 
-
-
-                roadList.add(road);
+                RoadsList.add(Roads);
             }
 
         }catch (SQLException e){
@@ -76,6 +75,6 @@ public class RoadDAO implements IBaseDAO<Road> {
             }
             ConnectionPool.getInstance().putback(connection);
         }
-        return roadList;
+        return RoadsList;
     }
 }
