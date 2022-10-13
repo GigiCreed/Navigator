@@ -3,7 +3,6 @@ package navigator.database.dao.jdbc;
 import navigator.database.dao.conectionpool.ConnectionPool;
 import navigator.database.dao.interfaces.IBaseDAO;
 import navigator.database.models.Cities;
-import navigator.database.models.Road;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,8 +26,6 @@ public class CitiesDAO implements IBaseDAO<Cities> {
             while (resultSet.next()){
                 cities.setId(resultSet.getLong("id"));
                 cities.setName(resultSet.getString("name"));
-                cities.setLatitudeX(resultSet.getDouble("latitude_x"));
-                cities.setLongitudeY(resultSet.getDouble("longitude_y"));
             }
         }catch (SQLException e){
             LOGGER.error(e);
@@ -36,10 +33,12 @@ public class CitiesDAO implements IBaseDAO<Cities> {
             try {
                 assert preparedStatement != null;
                 preparedStatement.close();
+                assert resultSet != null;
                 resultSet.close();
             }catch (SQLException e) {
              LOGGER.error(e);
             }
+            ConnectionPool.getInstance().putback(connection);
         }
         return cities;
     }
@@ -58,9 +57,6 @@ public class CitiesDAO implements IBaseDAO<Cities> {
 
                 cities.setId(resultSet.getLong("id"));
                 cities.setName(resultSet.getString("name"));
-                cities.setLatitudeX(resultSet.getDouble("latitude_x"));
-                cities.setLongitudeY(resultSet.getDouble("longitude_y"));
-
 
                 citiesList.add(cities);
             }
@@ -81,32 +77,33 @@ public class CitiesDAO implements IBaseDAO<Cities> {
         return citiesList;
     }
 
-    public Cities getByName(String name) {
-        Connection connection = ConnectionPool.getInstance().retrieve();
-        PreparedStatement preparedStatement =null;
-        ResultSet resultSet = null;
-        Cities cities = new Cities();
-        try {
-            preparedStatement = connection.prepareStatement("Select * from cities Where name = ?");
-            preparedStatement.setString(1,name);
-            resultSet =preparedStatement.executeQuery();
-            while (resultSet.next()){
-                cities.setId(resultSet.getLong("id"));
-                cities.setName(resultSet.getString("name"));
-                cities.setLatitudeX(resultSet.getDouble("latitude_x"));
-                cities.setLongitudeY(resultSet.getDouble("longitude_y"));
-            }
-        }catch (SQLException e){
-            LOGGER.error(e);
-        }finally {
-            try {
-                assert preparedStatement != null;
-                preparedStatement.close();
-                resultSet.close();
-            }catch (SQLException e) {
-                LOGGER.error(e);
-            }
-        }
-        return cities;
-    }
+//    public Cities getByName(String name) {
+//        Connection connection = ConnectionPool.getInstance().retrieve();
+//        PreparedStatement preparedStatement =null;
+//        ResultSet resultSet = null;
+//        Cities cities = new Cities();
+//        try {
+//            preparedStatement = connection.prepareStatement("Select * from cities Where name = ?");
+//            preparedStatement.setString(1,name);
+//            resultSet =preparedStatement.executeQuery();
+//            while (resultSet.next()){
+//                cities.setId(resultSet.getLong("id"));
+//                cities.setName(resultSet.getString("name"));
+//
+//            }
+//        }catch (SQLException e){
+//            LOGGER.error(e);
+//        }finally {
+//            try {
+//                assert preparedStatement != null;
+//                preparedStatement.close();
+//                assert resultSet != null;
+//                resultSet.close();
+//            }catch (SQLException e) {
+//                LOGGER.error(e);
+//            }
+//            ConnectionPool.getInstance().putback(connection);
+//        }
+//        return cities;
+//    }
 }

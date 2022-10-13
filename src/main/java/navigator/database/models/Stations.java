@@ -1,23 +1,25 @@
 package navigator.database.models;
 
-public class Cities {
+public class Stations {
     private Long id;
 
     private String name;
 
+    private Long citiesId;
 
-    public Cities() {
+
+    public Stations() {
     }
 
-    public Cities(String name) {
+    public Stations(String name, Long citiesId) {
         this.name = name;
-
+        this.citiesId = citiesId;
     }
 
-    public Cities(Long id, String name) {
+    public Stations(Long id, String name, Long citiesId) {
         this.id = id;
         this.name = name;
-
+        this.citiesId = citiesId;
     }
 
     public Long getId() {
@@ -36,13 +38,20 @@ public class Cities {
         this.name = name;
     }
 
+    public Long getCitiesId() {
+        return citiesId;
+    }
 
+    public void setCitiesId(Long citiesId) {
+        this.citiesId = citiesId;
+    }
 
     @Override
     public String toString() {
-        return "Cities{" +
+        return "Stations{" +
                 "id=" + id +
-                ", name='" + name +
+                ", name='" + name + '\'' +
+                ", citiesId=" + citiesId +
                 '}';
     }
 }

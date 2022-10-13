@@ -1,15 +1,14 @@
 package navigator.database.models;
 
-public class Road {
-  Long id;
+public class Roads {
+  private Long id;
+  private double distance;
 
-  double distance;
 
-
-  public Road() {
+  public Roads() {
   }
 
-  public Road(Long id, double distance) {
+  public Roads(Long id, double distance) {
     this.id = id;
     this.distance = distance;
   }
