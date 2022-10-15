@@ -5,24 +5,29 @@ public class Floyd {
     final static int INF = 9999, nV = 4;
 
     // Navigational Routes
-    private int[][] directions = new int[nV][nV];
+    private double[][] directions;
 
     // Distance Routes
-    private int[][] distances = new int[nV][nV];
+    private double[][] distances;
 
-    public int[][] getDistances() {
+    public Floyd(int size) {
+        directions = new double[size][size];
+        distances = new double[size][size];
+    }
+
+    public double[][] getDistances() {
         return distances;
     }
 
-    public void setDistances(int[][] distances) {
+    public void setDistances(double[][] distances) {
         this.distances = distances;
     }
 
-    public int[][] getDirections() {
+    public double[][] getDirections() {
         return directions;
     }
 
-    public void setDirections(int[][] directions) {
+    public void setDirections(double[][] directions) {
         this.directions = directions;
     }
 
@@ -54,15 +59,15 @@ public class Floyd {
                 }
             }
         }
-        printMatrix(matrix);
 
-        System.out.println("--------------");
 
-        printMatrix(direction);
+
+        setDistances(matrix);
+        setDirections(direction);
 
     }
 
-    void printMatrix(double[][] matrix) {
+   public void printMatrix(double[][] matrix) {
         for (int i = 0; i < matrix.length; ++i) {
             for (int j = 0; j < matrix.length; ++j) {
                 if (matrix[i][j] == INF)
