@@ -17,6 +17,7 @@ public class App
     public static void main( String[] args )
     {
         Navigator navigator = new Navigator();
+        System.out.println("asd");
 
         navigator.showDistance("Batumi A","Batumi F");
     }
