@@ -1,8 +1,7 @@
 package navigator.database.dao.jdbc;
 
 import navigator.database.dao.conectionpool.ConnectionPool;
-import navigator.database.dao.interfaces.IBaseDAO;
-import navigator.database.models.Cities;
+import navigator.database.dao.interfaces.IRoadsDAO;
 import navigator.database.models.Roads;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoadsDAO implements IBaseDAO<Roads> {
+public class RoadsDAO implements IRoadsDAO {
     private static final Logger LOGGER = LogManager.getLogger(RoadsDAO.class);
 
     @Override
