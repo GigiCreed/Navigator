@@ -88,27 +88,34 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 -- Batumi
--- INSERT INTO stations(name,Cities_id) VALUES ("Station A",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station B",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station C",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station D",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station E",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station F",1);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station G",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi A",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi B",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi C",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi D",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi E",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi F",1);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Batumi G",1);
 
 
 -- Queteisi
--- INSERT INTO stations(name,Cities_id) VALUES ("Station A",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station B",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station C",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station D",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station E",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station F",2);
--- INSERT INTO stations(name,Cities_id) VALUES ("Station G",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi A",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi B",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi C",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi D",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi E",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi F",2);
+-- INSERT INTO stations(name,Cities_id) VALUES ("Qutaisi G",2);
 
 
 -- Roads
 
+-- INSERT INTO roads(distance) VALUES (10.0);
+-- INSERT INTO roads(distance) VALUES (10.0);
+-- INSERT INTO roads(distance) VALUES (10.0);
+-- INSERT INTO roads(distance) VALUES (3.6);
+-- INSERT INTO roads(distance) VALUES (5.5);
+-- INSERT INTO roads(distance) VALUES (6.4);
+-- INSERT INTO roads(distance) VALUES (7.1);
 -- INSERT INTO roads(distance) VALUES (3.6);
 -- INSERT INTO roads(distance) VALUES (5.5);
 -- INSERT INTO roads(distance) VALUES (6.4);
@@ -117,6 +124,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- INSERT INTO roads(distance) VALUES (9.2);
 -- INSERT INTO roads(distance) VALUES (10.4);
 -- INSERT INTO roads(distance) VALUES (150.80);
+
 
 -- roadstoStation
 
@@ -135,8 +143,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (6,7);
 -- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (7,7);
 -- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (7,1);
--- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (22,7);
--- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (22,8);
+-- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (15,7);
+-- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (15,8);
 
 
 -- Qeteisi
@@ -157,12 +165,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (14,8);
 
 
--- INSERT INTO roadtostation (Roads_id,Stations_id) VALUES (1,1);
 
 
 
 
-SELECT * FROM roadtostation;
 
 
 
