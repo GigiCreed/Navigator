@@ -18,6 +18,6 @@ public class App
     {
         Navigator navigator = new Navigator();
 
-        navigator.showDistance("Batumi A","Batumi B");
+        navigator.showDistance("Batumi A","Batumi F");
     }
 }
