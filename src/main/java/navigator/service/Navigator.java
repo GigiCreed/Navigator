@@ -19,31 +19,37 @@ public class Navigator {
     private final RoadToStationDAO rd = new RoadToStationDAO();
     private final StationsDAO st = new StationsDAO();
     private final RoadsDAO roadsDAO = new RoadsDAO();
-    private final Stations first = new Stations();
-    private final Stations second = new Stations();
-
     private static final Logger LOGGER = LogManager.getLogger(Navigator.class);
 
-    public void showDistance(String from,String to) {
-        Stations stationFirst = st.getByName(from);
-        Stations stationSecond = st.getByName(to);
+    public void showDistance(StationEnum from ,StationEnum to) {
+        String from_Station = from.toString().replace("_"," ");
+        String to_Station = to.toString().replace("_"," ");
+
+        Stations stationFirst = st.getByName(from_Station);
+        Stations stationSecond = st.getByName(to_Station);
+
+
         if (Objects.equals(stationFirst.getCitiesId(), stationSecond.getCitiesId())) {
             List<Stations> lst = st.getAllByCityId(stationFirst.getCitiesId());
+
+
             int [] ints = new int[2];
             for (int i =0; i<lst.size();i++){
                 Stations stations = lst.get(i);
-                if(stations.getName().equals(from)){
+                if(stations.getName().equals(from_Station)){
                    ints[0]=i;
                 }
-                if(stations.getName().equals(to)){
+                if(stations.getName().equals(to_Station)){
                     ints[1]=i;
                 }
             }
+
 
             Floyd floyd = new Floyd(lst.size());
 
             List<RoadToStation> arr = rd.getAllByCitiesId(lst.size());
             double[][] array = new double[lst.size()][lst.size()];
+
 
             for (int i = 0; i < arr.size(); i+= 2) {
                 int x = i;
@@ -51,9 +57,9 @@ public class Navigator {
                 RoadToStation s = arr.get(x);
 
                 Roads roads = roadsDAO.getById(f.getRoadsId());
+
                 array[(int) (f.getCitiesId()-1)][(int) (s.getCitiesId()-1)] = roads.getDistance();
                 array[(int) (s.getCitiesId()-1)][(int) (f.getCitiesId()-1)] = roads.getDistance();
-
             }
 
             for (int i = 0; i < array.length; ++i) {
@@ -69,6 +75,7 @@ public class Navigator {
             int sub = ints[0];
             List<Integer> route = new ArrayList<>();
             route.add(sub);
+
             while (true) {
                 if (floyd.getDirections()[sub][ints[1]]-1 == ints[1]) {
                     route.add(ints[1]);
@@ -84,12 +91,9 @@ public class Navigator {
                 System.out.print(lst.get(route.get(i)).getName() + " - ");
             }
 
-
             LOGGER.info("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
         } else {
             List<Stations> list = st.getAll();
-
-            System.out.println(list.size());
 
             Floyd floyd = new Floyd(list.size());
 
@@ -98,15 +102,14 @@ public class Navigator {
             int [] ints = new int[2];
             for (int i =0; i<list.size();i++){
                 Stations stations = list.get(i);
-                if(stations.getName().equals(from)){
+                if(stations.getName().equals(from_Station)){
                     ints[0]=i;
                 }
-                if(stations.getName().equals(to)){
+                if(stations.getName().equals(to_Station)){
                     ints[1]=i;
                 }
             }
 
-            System.out.println(arr.size());
             double[][] array = new double[list.size()][list.size()];
 
             for (int i = 0; i < arr.size(); i+= 2) {
@@ -133,7 +136,9 @@ public class Navigator {
             int sub = ints[0];
             List<Integer> route = new ArrayList<>();
             route.add(sub);
+
             while (true) {
+
                 if (floyd.getDirections()[sub][ints[1]]-1 == ints[1]) {
                     route.add(ints[1]);
                     break;
@@ -147,6 +152,7 @@ public class Navigator {
             for (int i = 0; i < route.size(); i++) {
                 System.out.print(list.get(route.get(i)).getName() + " - ");
             }
+
             LOGGER.info("\nDistance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
 
         }
