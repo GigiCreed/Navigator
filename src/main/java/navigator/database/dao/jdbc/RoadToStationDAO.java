@@ -98,4 +98,32 @@ public class RoadToStationDAO implements IRoadToStationDAO {
         }
         return null;
     }
+
+    @Override
+    public List<RoadToStation> getAllForCityDistance() {
+        Connection connection=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        try{
+            connection = ConnectionPool.getInstance().retrieve();
+            ps=connection.prepareStatement("SELECT * FROM roadtostation");
+            rs=ps.executeQuery();
+            List<RoadToStation> list= new ArrayList<>();
+            while (rs.next()){
+                list.add( new RoadToStation(rs.getLong("id"),rs.getLong("roads_id"),rs.getLong("stations_id")));
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(!connection.isClosed()) connection.close();
+                if(!ps.isClosed()) ps.close();
+                if(!rs.isClosed()) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }
