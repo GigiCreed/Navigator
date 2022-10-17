@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace="navigator.database.dao.interfaces.IRoadToStationDAO">
+
+    <select id="getById" parameterType="Long" resultMap="RoadToStationRs">
+        SELECT * FROM roadtostation WHERE id =#{id}
+    </select>
+
+    <resultMap id="RoadToStationRs" type="RoadToStation">
+        <id property="id" column="id"/>
+        <result property="roadsId" column="Roads_id"/>
+        <result property="stationsId" column="Stations_id"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="RoadToStationRs">
+        SELECT * FROM roadtostation
+    </select>
+
+    <select id="getAllByCitiesId" parameterType="int" resultMap="RoadToStationRs">
+        SELECT * FROM roadtostation where Stations_id <![CDATA[ <= ]]> #{cities_id} and Roads_id <![CDATA[<=]]> #{cities_id}
+    </select>
+
+</mapper>

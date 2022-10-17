@@ -3,19 +3,19 @@ package navigator.database.models;
 public class RoadToStation{
     private Long id;
     private Long roadsId;
-    private Long citiesId;
+    private Long stationsId;
 
     public RoadToStation(){}
 
-    public RoadToStation(Long roadsId, Long citiesId) {
+    public RoadToStation(Long roadsId, Long stationsId) {
         this.roadsId = roadsId;
-        this.citiesId = citiesId;
+        this.stationsId = stationsId;
     }
 
-    public RoadToStation(Long id, Long roadsId, Long citiesId) {
+    public RoadToStation(Long id, Long roadsId, Long stationsId) {
         this.id = id;
         this.roadsId = roadsId;
-        this.citiesId = citiesId;
+        this.stationsId = stationsId;
     }
 
     public Long getId() {
@@ -34,12 +34,12 @@ public class RoadToStation{
         this.roadsId = roadsId;
     }
 
-    public Long getCitiesId() {
-        return citiesId;
+    public Long getStationsId() {
+        return stationsId;
     }
 
-    public void setCitiesId(Long citiesId) {
-        this.citiesId = citiesId;
+    public void setStationsId(Long stationsId) {
+        this.stationsId = stationsId;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RoadToStation{
         return "RoadToStation{" +
                 "id=" + id +
                 ", roadsId=" + roadsId +
-                ", citiesId=" + citiesId +
+                ", stationsId=" + stationsId +
                 '}';
     }
 }
