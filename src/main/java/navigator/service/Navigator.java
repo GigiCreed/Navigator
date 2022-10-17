@@ -100,7 +100,7 @@ public class Navigator {
 
             Floyd floyd = new Floyd(list.size());
 
-            List<RoadToStation> arr = rd.getAllForCityDistance();
+            List<RoadToStation> arr = rd.getAll();
 
             int [] ints = new int[2];
             for (int i =0; i<list.size();i++){
