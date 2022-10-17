@@ -1,9 +1,9 @@
 package navigator.service;
 
 import navigator.algorithm.Floyd;
-import navigator.database.dao.jdbc.RoadToStationDAO;
-import navigator.database.dao.jdbc.RoadsDAO;
-import navigator.database.dao.jdbc.StationsDAO;
+import navigator.database.dao.mybatis.RoadToStationDAO;
+import navigator.database.dao.mybatis.RoadsDAO;
+import navigator.database.dao.mybatis.StationsDAO;
 import navigator.database.models.RoadToStation;
 import navigator.database.models.Roads;
 import navigator.database.models.Stations;
