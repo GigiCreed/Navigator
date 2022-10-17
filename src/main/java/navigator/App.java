@@ -16,8 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class App 
 {
     private static final Logger LOGGER = LogManager.getLogger(App.class);
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
         Navigator navigator = new Navigator();
         navigator.showDistance(StationEnum.Batumi_A,StationEnum.Qutaisi_D, VehicleEnum.BUS);
     }
