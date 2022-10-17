@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace="navigator.database.dao.interfaces.IRoadsDAO">
+
+    <select id="getById" parameterType="Long" resultMap="RoadsResult">
+        SELECT * FROM roads WHERE id =#{id}
+    </select>
+
+    <resultMap id="RoadsResult" type="Roads">
+        <id property="id" column="id"/>
+        <result property="distance" column="distance"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="RoadsResult">
+        SELECT * FROM roads
+    </select>
+
+</mapper>

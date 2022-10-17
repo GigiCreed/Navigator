@@ -19,6 +19,6 @@ public class App
     {
         Navigator navigator = new Navigator();
 
-        navigator.showDistance(StationEnum.Batumi_A,StationEnum.Qutaisi_C);
+        navigator.showDistance(StationEnum.Batumi_A,StationEnum.Qutaisi_G);
     }
 }

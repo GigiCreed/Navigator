@@ -1,9 +1,9 @@
 package navigator.service;
 
 import navigator.algorithm.Floyd;
-import navigator.database.dao.jdbc.RoadToStationDAO;
-import navigator.database.dao.jdbc.RoadsDAO;
-import navigator.database.dao.jdbc.StationsDAO;
+import navigator.database.dao.mybatis.RoadToStationDAO;
+import navigator.database.dao.mybatis.RoadsDAO;
+import navigator.database.dao.mybatis.StationsDAO;
 import navigator.database.models.RoadToStation;
 import navigator.database.models.Roads;
 import navigator.database.models.Stations;
@@ -58,8 +58,8 @@ public class Navigator {
 
                 Roads roads = roadsDAO.getById(f.getRoadsId());
 
-                array[(int) (f.getCitiesId()-1)][(int) (s.getCitiesId()-1)] = roads.getDistance();
-                array[(int) (s.getCitiesId()-1)][(int) (f.getCitiesId()-1)] = roads.getDistance();
+                array[(int) (f.getStationsId()-1)][(int) (s.getStationsId()-1)] = roads.getDistance();
+                array[(int) (s.getStationsId()-1)][(int) (f.getStationsId()-1)] = roads.getDistance();
             }
 
             for (int i = 0; i < array.length; ++i) {
@@ -85,13 +85,12 @@ public class Navigator {
                     sub = (int) floyd.getDirections()[sub][ints[1]]-1;
                 }
             }
-
-            LOGGER.info("To Reach Your destination you have to go through: ");
+            System.out.println("The shortest distance to reach the destination: ");
             for (int i = 0; i < route.size(); i++) {
-                System.out.print(lst.get(route.get(i)).getName() + " - ");
+                System.out.print(lst.get(route.get(i)).getName() + " ->");
             }
 
-            LOGGER.info("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
+            System.out.println("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
         } else {
             List<Stations> list = st.getAll();
 
@@ -118,8 +117,8 @@ public class Navigator {
                 RoadToStation s = arr.get(x);
 
                 Roads roads = roadsDAO.getById(f.getRoadsId());
-                array[(int) (f.getCitiesId()-1)][(int) (s.getCitiesId()-1)] = roads.getDistance();
-                array[(int) (s.getCitiesId()-1)][(int) (f.getCitiesId()-1)] = roads.getDistance();
+                array[(int) (f.getStationsId()-1)][(int) (s.getStationsId()-1)] = roads.getDistance();
+                array[(int) (s.getStationsId()-1)][(int) (f.getStationsId()-1)] = roads.getDistance();
 
             }
 
@@ -148,12 +147,11 @@ public class Navigator {
                 }
             }
 
-            LOGGER.info("To Reach Your destination you have to go through: ");
+            System.out.println("The shortest distance to reach the destination: ");
             for (int i = 0; i < route.size(); i++) {
                 System.out.print(list.get(route.get(i)).getName() + " - ");
             }
-
-            LOGGER.info("\nDistance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
+            System.out.println("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
 
         }
     }

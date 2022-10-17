@@ -71,7 +71,7 @@ public class ConnectionPool {
             conPool.removeElement(newConn);
         }
         activeConnections.addElement(newConn);
-        LOGGER.info("The connection was retrieved: " + newConn.toString());
+//        LOGGER.info("The connection was retrieved: " + newConn.toString());
         return newConn;
     }
 
@@ -79,7 +79,7 @@ public class ConnectionPool {
         if (c != null) {
             if (activeConnections.removeElement(c)) {
                 conPool.addElement(c);
-                LOGGER.info("Putting the connection back to Connection pool: " + c.toString());
+//                LOGGER.info("Putting the connection back to Connection pool: " + c.toString());
             } else {
                 throw new NullPointerException("Connection is not in the Active Connections array");
             }

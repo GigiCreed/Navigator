@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE configuration
+        PUBLIC '-//mybatis.org//DTD Config 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<configuration>
+        <properties resource="database.properties"/>
+        <typeAliases>
+            <typeAlias type="navigator.database.models.Stations" alias="Stations"/>
+            <typeAlias type="navigator.database.models.Roads" alias="Roads"/>
+            <typeAlias type="navigator.database.models.RoadToStation" alias="RoadToStation"/>
+            <typeAlias type="navigator.database.models.Cities" alias="Cities"/>
+        </typeAliases>
+        <environments default="development">
+            <environment id="development">
+                <transactionManager type="JDBC">
+                    <property name="defaultReadOnly" value="false"/>
+                </transactionManager>
+                <dataSource type="POOLED">
+                    <property name="driver" value="${driver}"/>
+                    <property name="url" value="${url}"/>
+                    <property name="username" value="${userName}"/>
+                    <property name="password" value="${password}"/>
+                </dataSource>
+            </environment>
+        </environments>
+        <mappers>
+            <mapper resource="mybatisfiles/mappers/StationsMapper.xml"/>
+            <mapper resource="mybatisfiles/mappers/RoadsMapper.xml"/>
+            <mapper resource="mybatisfiles/mappers/RoadToStationMapper.xml"/>
+            <mapper resource="mybatisfiles/mappers/CitiesMapper.xml"/>
+        </mappers>
+</configuration>
