@@ -1,4 +1,4 @@
-package navigator.service;
+package navigator.service.enums;
 
 public enum StationEnum {
     Batumi_A,

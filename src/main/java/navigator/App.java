@@ -3,7 +3,8 @@ package navigator;
 
 
 import navigator.service.Navigator;
-import navigator.service.StationEnum;
+import navigator.service.enums.StationEnum;
+import navigator.service.enums.VehicleEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +19,6 @@ public class App
     public static void main( String[] args )
     {
         Navigator navigator = new Navigator();
-
-        navigator.showDistance(StationEnum.Batumi_A,StationEnum.Qutaisi_G);
+        navigator.showDistance(StationEnum.Batumi_A,StationEnum.Qutaisi_D, VehicleEnum.BUS);
     }
 }
