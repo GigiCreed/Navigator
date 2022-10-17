@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IRoadToStationDAO extends IBaseDAO<RoadToStation>{
     List<RoadToStation> getAllByCitiesId(int cities_id);
+
+    List<RoadToStation> getAllForCityDistance();
 }
