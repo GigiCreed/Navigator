@@ -7,6 +7,8 @@ import navigator.database.dao.jdbc.StationsDAO;
 import navigator.database.models.RoadToStation;
 import navigator.database.models.Roads;
 import navigator.database.models.Stations;
+import navigator.service.enums.StationEnum;
+import navigator.service.enums.VehicleEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +23,7 @@ public class Navigator {
     private final RoadsDAO roadsDAO = new RoadsDAO();
     private static final Logger LOGGER = LogManager.getLogger(Navigator.class);
 
-    public void showDistance(StationEnum from ,StationEnum to) {
+    public void showDistance(StationEnum from , StationEnum to, VehicleEnum vehicle) {
         String from_Station = from.toString().replace("_"," ");
         String to_Station = to.toString().replace("_"," ");
 
@@ -87,10 +89,12 @@ public class Navigator {
             }
             System.out.println("The shortest distance to reach the destination: ");
             for (int i = 0; i < route.size(); i++) {
-                System.out.print(lst.get(route.get(i)).getName() + " ->");
+                System.out.print(lst.get(route.get(i)).getName()+" ");
+                if(i+1<route.size()) System.out.print("-> ");
             }
 
-            System.out.println("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
+            System.out.println("\nDistance is "+ Math.round((floyd.getDistances()[ints[0]][ints[1]])*100)/100.0+" Km");
+            System.out.println("You will travel by "+vehicle+" in " + Math.round((floyd.getDistances()[ints[0]][ints[1]]/ vehicle.speed)*100)/100.0+" hours");
         } else {
             List<Stations> list = st.getAll();
 
@@ -137,7 +141,6 @@ public class Navigator {
             route.add(sub);
 
             while (true) {
-
                 if (floyd.getDirections()[sub][ints[1]]-1 == ints[1]) {
                     route.add(ints[1]);
                     break;
@@ -146,15 +149,14 @@ public class Navigator {
                     sub = (int) floyd.getDirections()[sub][ints[1]]-1;
                 }
             }
-
-            System.out.println("The shortest distance to reach the destination: ");
-            for (int i = 0; i < route.size(); i++) {
-                System.out.print(list.get(route.get(i)).getName() + " - ");
-            }
-            System.out.println("Distance is "+ floyd.getDistances()[ints[0]][ints[1]]+"Km");
-
+                System.out.println("The shortest distance to reach the destination: ");
+                for (int i = 0; i < route.size(); i++) {
+                    System.out.print(list.get(route.get(i)).getName()+" ");
+                    if (i + 1 < route.size()) System.out.print("-> ");
+                }
+                System.out.println("\nDistance is " + Math.round((floyd.getDistances()[ints[0]][ints[1]]) * 100) / 100.0 + " Km");
+                System.out.println("You will travel by " + vehicle + " in " + Math.round((floyd.getDistances()[ints[0]][ints[1]] / vehicle.speed) * 100) / 100.0 + " hours");
         }
     }
-
 
 }
