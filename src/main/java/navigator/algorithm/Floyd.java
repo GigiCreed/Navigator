@@ -76,6 +76,7 @@ public class Floyd {
                     System.out.print(matrix[i][j] + "  ");
             }
             System.out.println();
+
         }
     }
 }
